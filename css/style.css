@@ -1,0 +1,60 @@
+.searchBox{
+	width:95%;
+	margin: 0 auto;
+	background-color:#e1e1e1;
+	text-align:center;
+}
+.searchBox input[type="text"]{
+	display:block;
+	width:95%;
+	margin: 0 auto;
+}
+.searchBox input[type="submit"]{
+	margin-top: 2%;
+}
+
+.tagbox h3{
+	padding-top:0;
+	padding-bottom:0;
+	margin-top:0;
+	margin-bottom:0;
+}
+.tagbox a{
+	padding-top:1% !important;
+	padding-bottom:1% !important;
+}
+
+.thumbContainer{
+	padding: 1% 1% 1% 1%;
+}
+.thumbContainer img{
+	max-height:250px;
+	max-width:250px;
+	box-shadow: 0 0 20px #555;
+	margin: 10px 10px 10px 10px;
+}
+.thumbContainer img:hover{
+	box-shadow: 0 0 20px #4f9;
+}
+
+.paginamiento{
+	text-align:center;
+	text-decoration:none;
+}
+
+.uploadContainer{
+	padding-right: 0.5em;
+	text-align: center;
+	margin-top:15%;
+}
+.uploadContainer form{
+	
+	display: inline-block;
+}
+.uploadContainer input[type="file"]{
+	margin-bottom: 2%;
+}
+.uploadContainer input[type="text"]{
+	text-align:center;
+	margin-bottom: 2%;
+}
