@@ -1,2 +1,2 @@
-"# BoreBooru" 
+# BoreBooru
 Requires FFmpeg
