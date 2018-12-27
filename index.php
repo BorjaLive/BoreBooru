@@ -20,9 +20,17 @@
 		</div>
 		<div class="tagBox">
 			<h3 class="w3-bar-item">Tags</h3>
-			<a href="#" class="w3-bar-item w3-button">Tag 1</a>
-			<a href="#" class="w3-bar-item w3-button">Tag 2</a>
-			<a href="#" class="w3-bar-item w3-button">Tag 3</a>
+			<?php
+				$tags = getTags();
+				if($tags == "NADA"){
+					echo "<h2>Nada de nada</h2>";
+				}else{
+					foreach ($tags as $tag){
+						echo '<a href="?search='.$tag["tag"].'" class="w3-bar-item w3-button">'.$tag["tag"].' '.number_format($tag["usos"]).'</a>';
+					}
+				}
+				
+			?>
 		</div>
 	</div>
 
