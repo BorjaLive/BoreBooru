@@ -25,7 +25,7 @@ Function agregar($tags,$format){
 	//Insertar las tags en el contados
 	$partes = explode(" ",$tags);
 	foreach ($partes as $parte){
-		contarTag($parte);
+		contarTag($parte, 1);
 	}
 	
 	$link->close();
@@ -151,7 +151,7 @@ Function tumbnail($nombre){
 }
 
 
-Function contarTag($tag){
+Function contarTag($tag, $dif){
 	If ($tag == "" or $tag == " ")
 		return;
 	
@@ -160,7 +160,7 @@ Function contarTag($tag){
 	$row = $result->fetch_assoc();
 	if($row){
 		$link->query("DELETE FROM `tags` WHERE `TAG`='".$tag."';");
-		$link->query("INSERT INTO `tags` (`TAG`,`USOS`) VALUES ('".$tag."','"._formato($row["USOS"]+1)."');");
+		$link->query("INSERT INTO `tags` (`TAG`,`USOS`) VALUES ('".$tag."','"._formato($row["USOS"]+$dif)."');");
 	}else{
 		$link->query("INSERT INTO `tags` (`TAG`,`USOS`) VALUES ('".$tag."','1');");
 	}
@@ -219,7 +219,27 @@ Function _formato($n){
 	return $n;
 }
 
-function _compararUsos($a, $b){
+Function _compararUsos($a, $b){
 	return $a['usos'] < $b['usos'];
+}
+
+Function eliminar($id){
+	global $DATA;
+	$link = conn();
+	
+	$result = $link->query("SELECT * FROM imagenes WHERE id=$id");
+	while($row = $result->fetch_assoc()){
+		$partes = explode(" ",$row["TAG"]);
+		foreach ($partes as $parte){
+			contarTag($parte, -1);
+		}
+		unlink($DATA."original/"._formato($id).".".$row["FORMAT"]);
+		unlink($DATA."thumbnails/"._formato($id).".jpg");
+	}
+	
+	$link->query("DELETE FROM imagenes WHERE ID=$id;");
+	
+	$link->close();
+	return $id;
 }
 ?>
